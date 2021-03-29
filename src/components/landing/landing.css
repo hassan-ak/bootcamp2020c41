@@ -1,0 +1,28 @@
+.homeContainer {
+  min-height: 77vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.homeContent {
+  color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.homeImg {
+  align-items: center;
+}
+.homeDetail {
+  text-align: justify;
+  text-justify: inter-word;
+}
+.homeTitle {
+  color: white;
+}
+.btnsDiv {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
