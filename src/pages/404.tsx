@@ -1,8 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Footer from "../components/addOns/Footer";
-import Header from "../components/addOns/Header";
 import { ErrorPage } from "../components/errorPage/ErrorPage";
+import Layout from "../components/addOns/Layout";
 
 export default function Error() {
   return (
@@ -10,9 +9,9 @@ export default function Error() {
       <Helmet>
         <title>Virtual Lolly</title>
       </Helmet>
-      <Header />
-      <ErrorPage />
-      <Footer />
+      <Layout>
+        <ErrorPage />
+      </Layout>
     </div>
   );
 }
