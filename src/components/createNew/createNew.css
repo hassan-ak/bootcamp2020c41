@@ -1,0 +1,19 @@
+.createLollyDiv {
+  min-height: 77vh;
+  background-color: tomato;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LollyImg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formFields {
+  border: 1px solid rgb(15, 14, 14);
+  padding: 20px;
+}
