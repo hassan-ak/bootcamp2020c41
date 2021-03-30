@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { TextField } from "@material-ui/core";
-import { Button, Grid } from "@material-ui/core";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import { Card, CardContent } from "@material-ui/core";
-import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
-import EditIcon from "@material-ui/icons/Edit";
-import { makeStyles } from "@material-ui/core/styles";
-import SaveIcon from "@material-ui/icons/Save";
+import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 import "./createNew.css";
 import { Lolly } from "../addOns/Lolly";
+import { Button, TextField } from "@material-ui/core";
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+  })
+);
 interface BookmarkProps {
   reciever: string;
   sender: string;
@@ -19,6 +23,7 @@ interface BookmarkProps {
   colorMiddle: string;
   colorBottom: string;
 }
+
 export const CreateNew = () => {
   const [recieverName, setRecieverName] = useState("");
   const [senderName, setSenderName] = useState("");
@@ -26,6 +31,7 @@ export const CreateNew = () => {
   const [colorTopTs, setColorTopTs] = useState("#d52358");
   const [colorMiddleTs, setColorMiddleTs] = useState("#e95946");
   const [colorBottomTs, setColorBottomTs] = useState("#deaa43");
+
   const initialValues: BookmarkProps = {
     reciever: recieverName,
     sender: senderName,
@@ -34,86 +40,88 @@ export const CreateNew = () => {
     colorMiddle: colorMiddleTs,
     colorBottom: colorBottomTs,
   };
+  const classes = useStyles();
   return (
-    <div className='createLollyDiv'>
-      <Grid container>
-        <Grid item xs={12} md={7} component={Card} elevation={0}>
-          <CardContent className='homeContent homeImg'>
-            <div className='createForm'>
-              <Formik
-                initialValues={initialValues}
-                validationSchema={Yup.object({
-                  reciever: Yup.string().required(
-                    "Kindly enter reciever's name."
-                  ),
-                  sender: Yup.string().required("Kindly enter sender's name."),
-                  message: Yup.string().required("Kindly enter message."),
-                })}
-                onSubmit={(values, onSubmitProps) => {
-                  setRecieverName(values.reciever);
-                  setSenderName(values.sender);
-                  setMessageTs(values.message);
-                  setColorTopTs(values.colorTop);
-                  setColorMiddleTs(values.colorMiddle);
-                  setColorBottomTs(values.colorBottom);
-                  console.log(values);
-                  onSubmitProps.resetForm();
-                }}
-              >
-                <Form>
-                  <div className='formFields'>
-                    <div>
+    <div className={classes.root}>
+      <Grid container spacing={1}>
+        {/* Form Side */}
+        <Grid item xs={12} md={8}>
+          <Paper
+            className='formPaper'
+            style={{ backgroundColor: "transparent" }}
+            elevation={0}
+          >
+            <Formik
+              initialValues={initialValues}
+              validationSchema={Yup.object({
+                reciever: Yup.string().required(
+                  "Kindly enter reciever's name."
+                ),
+                sender: Yup.string().required("Kindly enter sender's name."),
+                message: Yup.string().required("Kindly enter message."),
+              })}
+              onSubmit={(values, onSubmitProps) => {
+                setRecieverName(values.reciever);
+                setSenderName(values.sender);
+                setMessageTs(values.message);
+                setColorTopTs(values.colorTop);
+                setColorMiddleTs(values.colorMiddle);
+                setColorBottomTs(values.colorBottom);
+                onSubmitProps.resetForm();
+              }}
+            >
+              <Form autoComplete='off'>
+                <Grid container spacing={1}>
+                  <Grid item xs={12} md={10}>
+                    <Paper
+                      className='paper inputPaper'
+                      style={{
+                        backgroundColor: "#284235",
+                        color: "white",
+                        justifyContent: "space-evenly",
+                      }}
+                    >
                       <Field
                         as={TextField}
                         required
                         variant='outlined'
                         name='reciever'
                         label='To'
-                        helperText={
-                          <ErrorMessage name='reciever'>
-                            {(msg) => <span>{msg}</span>}
-                          </ErrorMessage>
-                        }
+                        className='senderIn'
                       />
-                    </div>
-                    <div>
                       <Field
                         as={TextField}
                         required
                         variant='outlined'
+                        multiline
+                        rows='12'
                         name='message'
                         label='Message'
-                        helperText={
-                          <ErrorMessage name='message'>
-                            {(msg) => <span>{msg}</span>}
-                          </ErrorMessage>
-                        }
+                        className='messageIn'
                       />
-                    </div>
-                    <div>
                       <Field
                         as={TextField}
                         required
                         variant='outlined'
                         name='sender'
                         label='From'
-                        helperText={
-                          <ErrorMessage name='sender'>
-                            {(msg) => <span>{msg}</span>}
-                          </ErrorMessage>
-                        }
+                        className='recieverIn'
                       />
-                    </div>
-                    <div>
                       <Button
-                        style={{ color: "white" }}
+                        style={{ color: "white", backgroundColor: "#171d1a" }}
                         variant='contained'
                         type='submit'
                       >
-                        <AddCircleOutlineIcon />
+                        Freeze Lolly
                       </Button>
-                    </div>
-                    <div>
+                    </Paper>
+                  </Grid>
+                  <Grid item xs={12} md={2}>
+                    <Paper
+                      className='paper colorPaper'
+                      style={{ backgroundColor: "transparent" }}
+                      elevation={0}
+                    >
                       <input
                         type='color'
                         name='colorTop'
@@ -135,28 +143,26 @@ export const CreateNew = () => {
                         className='colorPicker'
                         onChange={(e) => setColorBottomTs(e.target.value)}
                       />
-                    </div>
-                  </div>
-                </Form>
-              </Formik>
-            </div>
-          </CardContent>
+                    </Paper>
+                  </Grid>
+                </Grid>
+              </Form>
+            </Formik>
+          </Paper>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          md={5}
-          component={Card}
-          elevation={0}
-          style={{ backgroundColor: "transparent" }}
-        >
-          <CardContent className='LollyImg'>
+        {/* Lolly Side */}
+        <Grid item xs={12} md={4}>
+          <Paper
+            className='paper'
+            style={{ backgroundColor: "transparent" }}
+            elevation={0}
+          >
             <Lolly
               fillLollyTop={colorTopTs}
               fillLollyMiddle={colorMiddleTs}
               fillLollyBottom={colorBottomTs}
             />
-          </CardContent>
+          </Paper>
         </Grid>
       </Grid>
     </div>

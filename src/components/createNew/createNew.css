@@ -1,19 +1,50 @@
-.createLollyDiv {
-  min-height: 77vh;
-  background-color: tomato;
+.paper {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  color: black;
+  height: 76vh;
+  display: "flex";
 }
-
-.LollyImg {
+.colorPaper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 100px 0px;
+}
+.inputPaper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
 }
 
-.formFields {
-  border: 1px solid rgb(15, 14, 14);
-  padding: 20px;
+.colorPicker {
+  border: none;
+  border-radius: 100%;
+  border: none;
+  background-color: transparent;
+}
+
+.senderIn,
+.messageIn,
+.recieverIn {
+  width: 100%;
+}
+
+.errorMsg {
+  color: red;
+}
+@media (max-width: 960px) {
+  .inputPaper {
+    height: 75vh;
+  }
+  .colorPaper {
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
 }
