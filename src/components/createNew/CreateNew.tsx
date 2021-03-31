@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -74,13 +74,14 @@ export const CreateNew = () => {
                 <Grid container spacing={1}>
                   <Grid item xs={12} md={10}>
                     <Paper
-                      className='paper inputPaper'
+                      className='paper inputPaper inputFormdiv'
                       style={{
                         backgroundColor: "#284235",
                         color: "white",
                         justifyContent: "space-evenly",
                       }}
                     >
+                      <p>To</p>
                       <Field
                         as={TextField}
                         required
@@ -89,16 +90,18 @@ export const CreateNew = () => {
                         label='To'
                         className='senderIn'
                       />
+                      <p>Message</p>
                       <Field
                         as={TextField}
                         required
                         variant='outlined'
                         multiline
-                        rows='12'
+                        rows='10'
                         name='message'
                         label='Message'
                         className='messageIn'
                       />
+                      <p>From</p>
                       <Field
                         as={TextField}
                         required
@@ -108,7 +111,11 @@ export const CreateNew = () => {
                         className='recieverIn'
                       />
                       <Button
-                        style={{ color: "white", backgroundColor: "#171d1a" }}
+                        style={{
+                          color: "white",
+                          backgroundColor: "#171d1a",
+                          marginTop: "10px",
+                        }}
                         variant='contained'
                         type='submit'
                       >

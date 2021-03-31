@@ -48,3 +48,12 @@
     padding: 0;
   }
 }
+
+.inputFormdiv {
+  padding-top: 0;
+}
+
+p {
+  align-self: flex-start;
+  margin: 0;
+}
